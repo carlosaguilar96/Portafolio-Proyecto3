@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>El viaje migrante en cifras</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <main>
+    <section class="intro">
+      <h1>El viaje migrante en cifras</h1>
+      <p>
+        Cada año, miles de personas emprenden un camino marcado por la incertidumbre.
+        Este recorrido visualiza algunos datos clave que ayudan a dimensionar el fenómeno
+        migratorio en Centroamérica.
+      </p>
+    </section>
+
+    <section class="step" data-chart="migrantes">
+      <h2>Migración anual</h2>
+      <p>
+        El flujo migratorio desde Centroamérica ha mostrado variaciones importantes
+        en la última década.
+      </p>
+      <canvas id="chartMigrantes"></canvas>
+    </section>
+
+    <section class="step" data-chart="origen">
+      <h2>Países de origen</h2>
+      <p>
+        Honduras, Guatemala y El Salvador concentran gran parte de los movimientos migratorios.
+      </p>
+      <canvas id="chartOrigen"></canvas>
+    </section>
+
+    <section class="step" data-chart="riesgos">
+      <h2>Principales riesgos</h2>
+      <p>
+        Durante el trayecto, las personas migrantes enfrentan múltiples amenazas
+        que ponen en riesgo su integridad.
+      </p>
+      <canvas id="chartRiesgos"></canvas>
+    </section>
+
+    <section class="closing">
+      <h2>Más allá de los números</h2>
+      <p>
+        Las cifras ayudan a comprender la magnitud del fenómeno, pero detrás de cada
+        dato hay historias, decisiones forzadas y contextos complejos.
+      </p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

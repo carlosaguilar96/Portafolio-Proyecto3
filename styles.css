@@ -1,0 +1,62 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f7f7f7;
+  color: #222;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+section {
+  margin-bottom: 6rem;
+}
+
+.intro h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.intro p {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.step {
+  opacity: 0.2;
+  transform: translateY(40px);
+  transition: all 0.6s ease;
+}
+
+.step.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+canvas {
+  max-width: 100%;
+}
+
+.closing h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,14 @@
+{
+  "migrantes": {
+    "labels": ["2019", "2020", "2021", "2022", "2023"],
+    "values": [320000, 280000, 350000, 420000, 480000]
+  },
+  "origen": {
+    "labels": ["Honduras", "Guatemala", "El Salvador", "Otros"],
+    "values": [38, 34, 20, 8]
+  },
+  "riesgos": {
+    "labels": ["Violencia", "Extorsión", "Accidentes", "Deshidratación"],
+    "values": [40, 30, 20, 10]
+  }
+}
