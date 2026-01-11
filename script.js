@@ -1,53 +1,53 @@
 let charts = {};
 let dataLoaded = null;
+const steps = document.querySelectorAll(".step");
 
-// Cargar datos
+// Cargar datos primero
 fetch("data.json")
   .then(res => res.json())
   .then(data => {
     dataLoaded = data;
+    initScroll(); // 🔥 iniciar solo cuando ya hay datos
   });
 
-// Seleccionar steps
-const steps = document.querySelectorAll(".step");
-
-// Intersection Observer
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("active");
-
-        const chartType = entry.target.dataset.chart;
-        if (chartType && !charts[chartType]) {
-          createChart(chartType);
+// Inicializar scroll y observer
+function initScroll() {
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activateStep(entry.target);
         }
-      }
-    });
-  },
-  {
-    threshold: 0.5
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  steps.forEach(step => observer.observe(step));
+
+  // Activar inmediatamente los visibles al cargar
+  activateVisibleSteps();
+}
+
+// Activar un step
+function activateStep(step) {
+  step.classList.add("active");
+
+  const chartType = step.dataset.chart;
+  if (chartType && !charts[chartType]) {
+    createChart(chartType);
   }
-);
+}
 
-// Observar cada step
-steps.forEach(step => observer.observe(step));
-
-// Forzar activación inicial (IMPORTANTE)
-window.addEventListener("load", () => {
+// Activar los steps visibles al cargar
+function activateVisibleSteps() {
   steps.forEach(step => {
     const rect = step.getBoundingClientRect();
-
     if (rect.top < window.innerHeight * 0.75) {
-      step.classList.add("active");
-
-      const chartType = step.dataset.chart;
-      if (chartType && !charts[chartType]) {
-        createChart(chartType);
-      }
+      activateStep(step);
     }
   });
-});
+}
 
 // Crear gráficas
 function createChart(type) {
@@ -60,21 +60,14 @@ function createChart(type) {
         type: "line",
         data: {
           labels: dataLoaded.migrantes.labels,
-          datasets: [
-            {
-              data: dataLoaded.migrantes.values,
-              borderWidth: 2,
-              tension: 0.3
-            }
-          ]
+          datasets: [{
+            data: dataLoaded.migrantes.values,
+            borderWidth: 2,
+            tension: 0.3
+          }]
         },
         options: {
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: false }
-          }
+          plugins: { legend: { display: false } }
         }
       }
     );
@@ -87,19 +80,13 @@ function createChart(type) {
         type: "bar",
         data: {
           labels: dataLoaded.origen.labels,
-          datasets: [
-            {
-              data: dataLoaded.origen.values
-            }
-          ]
+          datasets: [{
+            data: dataLoaded.origen.values
+          }]
         },
         options: {
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: true }
-          }
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
         }
       }
     );
@@ -112,21 +99,16 @@ function createChart(type) {
         type: "bar",
         data: {
           labels: dataLoaded.riesgos.labels,
-          datasets: [
-            {
-              data: dataLoaded.riesgos.values
-            }
-          ]
+          datasets: [{
+            data: dataLoaded.riesgos.values
+          }]
         },
         options: {
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: { beginAtZero: true }
-          }
+          plugins: { legend: { display: false } },
+          scales: { y: { beginAtZero: true } }
         }
       }
     );
   }
 }
+
